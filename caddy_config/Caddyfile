@@ -1,4 +1,4 @@
-n8n.titi.io.vn {
+api.ovo.io.vn {
     reverse_proxy n8n:5678 {
       flush_interval -1
     }
