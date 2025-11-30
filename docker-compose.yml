@@ -11,7 +11,9 @@ services:
       - caddy_data:/data
       - ${DATA_FOLDER}/caddy_config:/config
       - ${DATA_FOLDER}/caddy_config/Caddyfile:/etc/caddy/Caddyfile
-
+    networks:
+      - chay_proxy
+    
   n8n:
     image: docker.n8n.io/n8nio/n8n
     restart: always
@@ -27,9 +29,14 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - ${DATA_FOLDER}/local_files:/files
-      
+    networks:
+      - chay_proxy 
 volumes:
   caddy_data:
     external: true
   n8n_data:
     external: true
+    
+networks:
+  chay_proxy:
+    driver: bridge
